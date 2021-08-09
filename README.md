@@ -1,5 +1,5 @@
 # domaINfo
-Target domain information enumerations
+Target domain information enumerations. It collect whois information and DNS records of domain name with Google Dorking information about domain.
 
 OUTPUT
 ---
