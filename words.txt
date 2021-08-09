@@ -1,0 +1,6 @@
+domains
+support
+drive
+edu
+play
+test
