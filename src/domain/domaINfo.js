@@ -55,7 +55,9 @@ module.exports = {
         sublist && await this.subdomain(domain, sublist);
         // Google Droking
         this.data.googleDrok = await this.gdork(domain);
-        this.data.asn = (await Browser.scrap(domain,this.asn)).Results;
+        this.data.asn = (await Browser.scrap(domain, this.asn)).Results;
+        this.data.asnIPv4Graph = `https://bgp.he.net/graphs/${this.data.asn.toLowerCase()}-ipv4.svg`;
+        this.data.asnIPv6Graph = `https://bgp.he.net/graphs/${this.data.asn.toLowerCase()}-ipv6.svg`;
         this.data.performance = `${performance.now() - this.performance}ms`;
         return this.data;
     },
