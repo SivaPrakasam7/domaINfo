@@ -72,7 +72,7 @@ module.exports = {
             await Browser.scrap(q, gdork).then(rslt => { this.gdata.push(rslt.Results) });
         }
         // console.log(JSON.stringify([...new Set(this.gdata.flat().map(i => i.Link))], null, 4));
-        this.data.subDomains=this.data.subDomains.concat([...new Set(this.gdata.flat().map(i=>/https?:\/\/\w+.?\w+.google.com/i.exec(i.Link)).filter(Boolean).flat())]); // eval(`/\w+.?\w+.${domain}/g`).exec(i.Link)
+        this.data.subDomains=[...new Set(this.data.subDomains.concat(this.gdata.flat().map(i=>/https?:\/\/\w+.?\w+.google.com/i.exec(i.Link)).filter(Boolean).flat()))];
         return [...new Map(this.gdata.flat().map(i => [i.Link, i])).values()];
     }
 }
