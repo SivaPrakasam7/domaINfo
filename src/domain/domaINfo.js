@@ -35,7 +35,6 @@ module.exports = {
         this.data.nameServer = [];
         this.data.textRecord = [];
         this.data.subDomains = [];
-        this.data.googleDrok = [];
         // Get DNS records
         (await dns.promises.resolveAny(domain)).map(a => {
             a.type === "A" ? (() => {
@@ -64,7 +63,7 @@ module.exports = {
     // Subdomain enumeration
     async subdomain(domain, sublist) {
         for (var w of [...new Set(fs.readFileSync(sublist, 'utf-8').split('\n'))]) {
-            (await fetch(`https://${w}.${domain}`).then(rslt => { return rslt.status }).catch(err => { return 400 }) === 200) ? this.data.subDomains.push(w) : null;
+            (await fetch(`https://${w}.${domain}`).then(rslt => { return rslt.status }).catch(err => { return 400 }) === 200) ? this.data.subDomains.push(`https://${w}.${domain}`) : null;
         }
     },
     // Google dorking about domain
@@ -72,6 +71,8 @@ module.exports = {
         for (var q of [`index of ${domain}`, `site:${domain}`, `intext:${domain}`, `intitle:${domain}`, `define:${domain}`, `info:${domain}`, `domain:*.${domain} site:*.${domain}`, `related:${domain}`, `link:${domain}`, `@${domain}`, `phonebook:${domain}`, `${domain}`]) {
             await Browser.scrap(q, gdork).then(rslt => { this.gdata.push(rslt.Results) });
         }
+        // console.log(JSON.stringify([...new Set(this.gdata.flat().map(i => i.Link))], null, 4));
+        this.data.subDomains.concat([...new Set(this.gdata.flat().map(i=>/https?:\/\/\w+.?\w+.google.com/i.exec(i.Link)).filter(Boolean).flat())]); // eval(`/\w+.?\w+.${domain}/g`).exec(i.Link)
         return [...new Map(this.gdata.flat().map(i => [i.Link, i])).values()];
     }
 }

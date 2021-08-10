@@ -45,7 +45,30 @@ OUTPUT
         { '30': 'alt2.aspmx.l.google.com' }
     ],
     textRecord: [],
-    subDomains: [ 'domains', 'support', 'drive', 'edu', 'play' ],
+    subDomains: [
+      'https://packages.cloud.google.com',
+      'https://www.google.com',
+      'https://support.google.com',
+      'https://developers.google.com',
+      'https://cloud.google.com',
+      'https://firebase.google.com',
+      'http://www.google.com',
+      'https://translate.google.com',
+      'https://play.google.com',
+      'https://podcasts.google.com',
+      'http://sketchup.google.com',
+      'https://scholar.google.com',
+      'https://earth.google.com',
+      'https://accounts.google.com',
+      'https://policies.google.com',
+      'https://code.google.com',
+      'https://myaccount.google.com',
+      'https://domains.google.com',
+      'http://feedproxy.google.com',
+      'https://edu.google.com',
+      'https://families.google.com',
+      'https://contacts.google.com'
+    ],
     googleDrok: [
         {
         Link: 'https://packages.cloud.google.com/',
